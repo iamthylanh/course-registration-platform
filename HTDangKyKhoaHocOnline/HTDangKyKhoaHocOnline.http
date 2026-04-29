@@ -1,0 +1,6 @@
+@HTDangKyKhoaHocOnline_HostAddress = http://localhost:5017
+
+GET {{HTDangKyKhoaHocOnline_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
