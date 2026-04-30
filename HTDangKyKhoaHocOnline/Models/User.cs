@@ -8,25 +8,24 @@ namespace HTDangKyKhoaHocOnline.Models
 
         //Tên người dùng
         [Required]
-        public string FullName { get; set; }
+        public string FullName { get; set; } = string.Empty;
 
         //Số điện thoại người dùng
         [Required]
-        public string Phone { get; set; }
+        public string Phone { get; set; } = string.Empty;
 
         //Email người dùng
-        [Required]
         [EmailAddress]
-        public string Email { get; set; }
+        public string? Email { get; set; }
 
         //Mật khẩu người dùng
         [Required]
-        public string PasswordHash { get; set; }
+        public string PasswordHash { get; set; } = string.Empty;
 
         //Quyền người dùng
-        public string Role { get; set; } = "User";
+        public string Role { get; set; } = "Student";
 
         //Navigation
-        public ICollection<Enrollment> Enrollments { get; set; }
+        public ICollection<Enrollment> Enrollments { get; set; } = new List<Enrollment>();
     }
 }
