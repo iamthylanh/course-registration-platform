@@ -9,14 +9,14 @@ namespace HTDangKyKhoaHocOnline.Models
 
         //Tên khóa học
         [Required]
-        public string CourseName { get; set; }
+        public string CourseName { get; set; } = string.Empty;
 
         //Giá khóa học
         [Column(TypeName = "decimal(11,3)")]
         public decimal Price {  get; set; }
 
         //Mô tả khóa học
-        public string CourseDescription { get; set; }
+        public string CourseDescription { get; set; } = string.Empty;
 
         //Ngày bắt đầu khóa học
         [Required]
@@ -27,7 +27,7 @@ namespace HTDangKyKhoaHocOnline.Models
         public DateTime EndCourseDate { get; set; }
 
         //Navigation
-        public ICollection<Enrollment> Enrollments { get; set; }
+        public ICollection<Enrollment> Enrollments { get; set; } = new List<Enrollment>();
 
     }
 }

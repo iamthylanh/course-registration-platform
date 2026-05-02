@@ -23,7 +23,7 @@ namespace HTDangKyKhoaHocOnline.Models
         public string PasswordHash { get; set; } = string.Empty;
 
         //Quyền người dùng
-        public string Role { get; set; } = "Student";
+        public string Role { get; set; } = "Admin";
 
         //Navigation
         public ICollection<Enrollment> Enrollments { get; set; } = new List<Enrollment>();

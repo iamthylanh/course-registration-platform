@@ -15,7 +15,7 @@ namespace HTDangKyKhoaHocOnline.Models
         public int Progress { get; set; } = 0;
 
         //Navigation
-        public User User { get; set; }
-        public Course Course { get; set; }
+        public User? User { get; set; }
+        public Course? Course { get; set; }
     }
 }
