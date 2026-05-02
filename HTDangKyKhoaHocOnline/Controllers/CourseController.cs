@@ -89,5 +89,21 @@ namespace HTDangKyKhoaHocOnline.Controllers
 
             return Ok("Đã xóa");
         }
+        [Authorize(Roles = "Admin")]
+        [HttpGet("{courseID}/students")]
+        public IActionResult GetStudents(int courseID)
+        {
+            var students = _systemDBContext.Enrollment
+                .Where(e => e.CourseID == courseID)
+                .Select(e => new
+                {
+                    e.User!.UserID,
+                    e.User.FullName,
+                    e.User.Phone
+                })
+                .ToList();
+
+            return Ok(students);
+        }
     }
 }
