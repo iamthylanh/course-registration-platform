@@ -12,3 +12,6 @@
 
 ## 📌 Status
 In Progress...
+
+## 👨‍💻 Author
+Nguyen Thi Thuy Lanh
