@@ -1,9 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
-using HTDangKyKhoaHocOnline.Data;
+﻿using HTDangKyKhoaHocOnline.Data;
+using HTDangKyKhoaHocOnline.Middleware;
+using HTDangKyKhoaHocOnline.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddScoped<EnrollmentService>();
 
 // Add services to the container.
 builder.Services.AddDbContext<SystemDBContext>(options =>
@@ -76,6 +80,8 @@ app.UseAuthentication();
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.MapControllers();
 

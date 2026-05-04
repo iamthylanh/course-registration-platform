@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-namespace HTDangKyKhoaHocOnline.Models
+﻿namespace HTDangKyKhoaHocOnline.Models
 {
     //Tuyển sinh
     public class Enrollment
