@@ -19,9 +19,30 @@ namespace HTDangKyKhoaHocOnline.Controllers
 
         //Lấy tất cả khóa học
         [HttpGet]
-        public IActionResult GetAll()
+        public IActionResult GetAll([FromQuery] CourseQueryDTO query)
         {
-            var courses = _systemDBContext.Course
+            var courses = _systemDBContext.Course.AsQueryable();
+            //Tìm kiếm
+            if (!string.IsNullOrEmpty(query.Keyword))
+            {
+                courses = courses.Where(c => c.CourseName.Contains(query.Keyword));
+            }
+            //Lọc
+            if (query.MinPrice.HasValue)
+                courses = courses.Where(c => c.Price >= query.MinPrice);
+
+            if (query.MaxPrice.HasValue)
+                courses = courses.Where(c => c.Price <= query.MaxPrice);
+            //Sắp xếp
+            if (!string.IsNullOrEmpty(query.SortBy))
+            {
+                if(query.SortBy.ToLower() == "price")
+                    courses = query.Desc ? courses.OrderByDescending(c => c.Price)
+                        : courses.OrderBy(c => c.Price);
+            }//Phân trang
+            var total = courses.Count();
+            var result =courses.Skip((query.Page - 1) * query.PageSize)
+                .Take(query.PageSize)
                 .Select(c => new CourseDTO
                 {
                     CourseID = c.CourseID,
@@ -32,10 +53,16 @@ namespace HTDangKyKhoaHocOnline.Controllers
                     EndCourseDate = c.EndCourseDate,
                 })
                 .ToList();
-            return Ok(new ApiResponse<List<CourseDTO>>(
+            return Ok(new ApiResponse<object>(
                 true,
                 "Lấy danh sách khóa học thành công",
-                courses
+                new
+                {
+                    total,
+                    page = query.Page,
+                    pageSize = query.PageSize,
+                    data = result
+                }
                 )
             );
         }
