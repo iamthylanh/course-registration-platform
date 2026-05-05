@@ -7,6 +7,8 @@
 - Day 4: Course Management (CRUD + Role-based Authorization)
 - Day 5: Enrollment logic enhancement (validation, duplicate check, student listing)
 - Day 6: Clean architecture (Service Layer), Global Exception Handling, API Response standardization
+- Day 7: Search, Filter, Sort, Pagination
+
 ## 🛠 Tech Stack
 - ASP.NET Core
 - SQL Server
